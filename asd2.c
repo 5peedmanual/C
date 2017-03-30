@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 		printf("no args given\n");
 		exit(1);
 	}
-	printf("Argument given: %s\n", argv[1]);
+	//printf("Argument given: %s\n", argv[1]);
 	
 	fgets (array, BUFFERSIZE, stdin);
 
