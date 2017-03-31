@@ -10,7 +10,7 @@ void escreve_IEEE_strings(char sinal, char *expoente, char *mantissa, float valo
 	printf ("   sinal: %c\n", sinal);
 	printf ("expoente: %s\n", expoente);
 	printf ("mantissa: %s\n", mantissa);
-	printf ("   valor: %f\n", valor);
+	printf ("   valor: %.10f\n", valor);
 }
 
 
