@@ -4,8 +4,7 @@
 #include <ctype.h>
 #include <math.h>
 
-void escreve_IEEE_strings(char sinal, char* expoente, char* mantissa,
-float valor) {
+void escreve_IEEE_strings(char sinal, char* expoente, char* mantissa, float valor) {
 	printf("   sinal: %c\n", sinal);
 	printf("expoente: %s\n", expoente);
 	printf("mantissa: %s\n", mantissa);
@@ -95,7 +94,7 @@ int main(int argc, char *argv[]) {
 	int final_expoente = function_expoente(expoente);
 	float final_mantissa = function_mantissa(mantissa);
 	valor = function_final(sinal, final_expoente, final_mantissa);
-	escreve_IEEE_strings(sinal_print, final_expoente, final_mantissa, valor);
+	escreve_IEEE_strings(sinal, expoente, mantissa, valor);
 
 	return 0;
 }
