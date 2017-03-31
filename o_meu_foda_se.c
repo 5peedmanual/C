@@ -23,37 +23,38 @@ int convertBinaryToDecimal(long long n) {
 }
 //expoente string to int
 int function_expoente(char *expoente) {
-	int e = atoi(expoente); //
-	int e_int = convertBinaryToDecimal(e);
-	return e_int -127;
-	
+	int e = atoi(expoente);
+	int final_expoente = convertBinaryToDecimal(e);
+	return final_expoente -127;
 }
+
 //mantissa
 float function_mantissa(char *mantissa) {
 	int i;
-	float num = 1;
+	float num1 = 1;
   	for (i = 0; i < strlen (mantissa); i++) {
-      		if (mantissa[i] == '1')
-		num += (float) 1 *(pow (2, -(num + 1)));
-    	}
-  	return num;
+      		if (mantissa[i] == '1') {
+				num1 += (float) 1 *(pow (2, -(i + 1)));
+    		}
+    }
+  	return num1;
 }
 
 //final
 float function_final(char sinal, float final_expoente, float final_mantissa) {
-	float num;
+	float num2;
 	if ( sinal == '1') {
-		num = -1 * (final_mantissa) * pow(2,final_expoente);
+		num2 = -1 * (final_mantissa) * pow(2,final_expoente);
 	} else {
-		num = 1 * (final_mantissa) * pow(2,final_expoente);
+		num2 = 1 * (final_mantissa) * pow(2,final_expoente);
 	}
-	return num;
+	return num2;
 }
 
 int main(int argc, char *argv[]) {
 
 	int i;
-	char binary[33], sinal, sinal_print, expoente[8], mantissa[23];
+	char binary[33], sinal, expoente[8], mantissa[23];
 	char *pointer_to_binary, *sinal_pointer, *expoente_start_pointer, *expoente_pointer, *mantissa_start_pointer;
 	float valor;
 	long long n;
@@ -63,13 +64,6 @@ int main(int argc, char *argv[]) {
 	sinal_pointer = pointer_to_binary;
 	//sinal for the functions
 	sinal = binary[0];
-	//print_sinal
-	if ( binary[0] == '1' ) {
-		sinal_print = '-';
-	} else {
-		sinal_print = '+';
-	}
-
 	expoente_start_pointer = pointer_to_binary + 1; //start
 
 	for ( i = 0; i < 9; i++) { 
