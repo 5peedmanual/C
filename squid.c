@@ -9,7 +9,7 @@ float valor) {
 	printf("%c %.10f * 2^%d\n", sinal, mantissa, expoente);
 	printf("valor: %.10f\n", valor);
 }
-
+//binary para o expoente
 int convertBinaryToDecimal(long long n) {
     int decimalNumber = 0, i = 0, remainder;
     while (n!=0) {
@@ -20,32 +20,34 @@ int convertBinaryToDecimal(long long n) {
     }
     return decimalNumber;
 }
-
-int expo(char *expoente) {
+//expoente string to int
+int function_expoente(char *expoente) {
 	int e = atoi(expoente);
-	int e_int = convertBinaryToDecimal(e);
-	return e_int -127;
+	int final_expoente = convertBinaryToDecimal(e);
+	return final_expoente -127;
 	
 }
-float man(char *mantissa) {
+
+//mantissa
+float function_mantissa(char *mantissa) {
 	int i;
-	float f = 1;
+	float num1 = 1;
   	for (i = 0; i < strlen (mantissa); i++) {
       		if (mantissa[i] == '1')
-		f += (float) 1 *(pow (2, -(i + 1)));
+		num1 += (float) 1 *(pow (2, -(i + 1)));
     	}
-  	return f;
+  	return num1;
 }
 
 
 float final(char sinal, float e, float m) {
-	float v;
+	float num2;
 	if ( sinal == '1') {
-		v = -1 * (m) * pow(2,e);
+		num2 = -1 * (m) * pow(2,e);
 	} else {
-		v = 1 * (m) * pow(2,e);
+		num2 = 1 * (m) * pow(2,e);
 	}
-	return v;
+	return num2;
 }
 
 int main(int argc, char *argv[]) {	
@@ -58,7 +60,9 @@ int main(int argc, char *argv[]) {
 
 	fgets(binary, 33, stdin);
 	sinal_pointer = pointer_to_binary;
+	//sinal for the functions
 	sinal = binary[0];
+	//sinal for the print
 	if ( binary[0] == '1' ) {
 		sinal_print = '-';
 	} else {
@@ -78,16 +82,16 @@ int main(int argc, char *argv[]) {
 	mantissa_start_pointer = pointer_to_binary + 9;
 	for ( i = 0; i < 24; i++ ) {
 		if ( i == 23) {
-			mantissa[i] = '\0';
+			mantissa[i] = '\0'; //Add the null pointer to the end
 			break;
 		}
 		mantissa[i] = *mantissa_start_pointer;
 		mantissa_start_pointer += 1;
 	}
-	int e = expo(expoente);
-	float m = man(mantissa);
-	valor = final(sinal, e, m);
-	escreve_IEEE_valores(sinal_print, e, m, valor);
+	int final_expoente = function_expoente(expoente);
+	float final_mantissa = function_mantissa(mantissa);
+	valor = final(sinal, final_expoente, final_mantissa);
+	escreve_IEEE_valores(sinal_print, final_expoente, final_mantissa, valor);
 	return 0;
 }
 
