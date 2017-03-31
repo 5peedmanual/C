@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> //strcpy
+#include <string.h>
 #include <ctype.h>
 #include <math.h>
-
-#define total 127;
 
 void escreve_IEEE_strings(char sinal, char *expoente, char *mantissa, float valor) {
 	printf ("   sinal: %c\n", sinal);
@@ -12,9 +10,6 @@ void escreve_IEEE_strings(char sinal, char *expoente, char *mantissa, float valo
 	printf ("mantissa: %s\n", mantissa);
 	printf ("   valor: %.10f\n", valor);
 }
-
-
-//float getFloat(char sinal, char* expoente)
 
 int convertBinaryToDecimal(long long n) {
     int decimalNumber = 0, i = 0, remainder;
@@ -30,7 +25,6 @@ int convertBinaryToDecimal(long long n) {
 int expo(char *expoente) {
 	int e = atoi(expoente);
 	int e_int = convertBinaryToDecimal(e);
-	//printf("%d\n", e_int);
 	return e_int -127;
 	
 }
@@ -56,8 +50,7 @@ float final(char sinal, float e, float m) {
 	return v;
 }
 
-int main() {
-	
+int main(int argc, char *argv[]) {	
 	int i;
 	char binary[32], sinal, expoente[8], mantissa[23];
 	char *pointer_to_binary, *sinal_pointer, *expoente_start_pointer, *expoente_pointer, *mantissa_start_pointer;
@@ -65,16 +58,12 @@ int main() {
 	long long n;
 	pointer_to_binary = binary;
 
-	//printf("Enter binary: \n");
 	//fgets(binary, 32, stdin);
-	scanf("%s", &binary);
+	scanf("%s", ((char *) binary));
 	//strcpy(binary, "01000001001011000000000000000000\0");
-	//sinal
 	sinal_pointer = pointer_to_binary;
 	sinal = binary[0];
-	//EXPOENT
 	expoente_start_pointer = pointer_to_binary + 1; //start
-	//expoente_pointer = ((char *) expoente_start) + (10 * sizeof(char));		
 
 	for ( i = 0; i < 9; i++) { 
 		if ( i == 8 ) {
@@ -84,10 +73,7 @@ int main() {
 		expoente[i] = *expoente_start_pointer;
 		expoente_start_pointer += 1;	
 	}
-	
-	//mantissa
 	mantissa_start_pointer = pointer_to_binary + 9;
-
 	for ( i = 0; i < 23; i++ ) {
 		if ( i == 22) {
 			mantissa[i] = '\0';
@@ -96,9 +82,6 @@ int main() {
 		mantissa[i] = *mantissa_start_pointer;
 		mantissa_start_pointer += 1;
 	}
-				
-	
-
 	int e = expo(expoente);
 	float m = man(mantissa);
 	valor = final(sinal, e, m);
