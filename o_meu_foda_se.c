@@ -4,10 +4,12 @@
 #include <ctype.h>
 #include <math.h>
 
-void escreve_IEEE_valores(char sinal, int expoente, float mantissa,
+void escreve_IEEE_strings(char sinal, char* expoente, char* mantissa,
 float valor) {
-	printf("%c %.10f * 2^%d\n", sinal, mantissa, expoente);
-	printf("valor: %.10f\n", valor);
+	printf("   sinal: %c\n", sinal);
+	printf("expoente: %s\n", expoente);
+	printf("mantissa: %s\n", mantissa);
+	printf("   valor: %.10f\n", valor);
 }
 //binary para o expoente
 int convertBinaryToDecimal(long long n) {
@@ -22,7 +24,7 @@ int convertBinaryToDecimal(long long n) {
 }
 //expoente string to int
 int function_expoente(char *expoente) {
-	int e = atoi(expoente);
+	int e = atoi(expoente); //
 	int e_int = convertBinaryToDecimal(e);
 	return e_int -127;
 	
@@ -93,7 +95,7 @@ int main(int argc, char *argv[]) {
 	int final_expoente = function_expoente(expoente);
 	float final_mantissa = function_mantissa(mantissa);
 	valor = function_final(sinal, final_expoente, final_mantissa);
-	escreve_IEEE_valores(sinal_print, final_expoente, final_mantissa, valor);
+	escreve_IEEE_strings(sinal_print, final_expoente, final_mantissa, valor);
 
 	return 0;
 }
