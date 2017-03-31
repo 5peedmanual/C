@@ -29,14 +29,13 @@ int expo(char *expoente) {
 	
 }
 float man(char *mantissa) {
-	  int i;
-  float f = 1;
-  for (i = 0; i < strlen (mantissa); i++)
-    {
-      if (mantissa[i] == '1')
-	f = f + (float) 1 *(pow (2, -(i + 1)));
-    }
-  return f;
+	int i;
+	float f = 1;
+  	for (i = 0; i < strlen (mantissa); i++) {
+      		if (mantissa[i] == '1')
+		f += (float) 1 *(pow (2, -(i + 1)));
+    	}
+  	return f;
 }
 
 
@@ -52,14 +51,14 @@ float final(char sinal, float e, float m) {
 
 int main(int argc, char *argv[]) {	
 	int i;
-	char binary[32], sinal, expoente[8], mantissa[23];
+	char binary[33], sinal, expoente[8], mantissa[23];
 	char *pointer_to_binary, *sinal_pointer, *expoente_start_pointer, *expoente_pointer, *mantissa_start_pointer;
 	float valor;
 	long long n;
 	pointer_to_binary = binary;
 
-	//fgets(binary, 32, stdin);
-	scanf("%s", ((char *) binary));
+	fgets(binary, 32, stdin);
+	//scanf("%s", &binary);
 	//strcpy(binary, "01000001001011000000000000000000\0");
 	sinal_pointer = pointer_to_binary;
 	sinal = binary[0];
