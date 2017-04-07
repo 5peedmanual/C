@@ -90,7 +90,7 @@ int main() {
 
 
 	/************************************************************ EXPOENTE *************************************************************************/
-	expoente_start_pointer = pointer_to_binary + 1; // 1bit further
+	expoente_start_pointer = pointer_to_binary + 1; // 1bytet further
 	printf("expoente_start address: %p\n", expoente_start_pointer);
 	printf("expoente_start value: %c\n", *expoente_start_pointer);
 	
@@ -116,7 +116,7 @@ int main() {
 	printf("\n");
 	/************************************************************ MANTISSA *************************************************************************/
 
-	mantissa_start_pointer = pointer_to_binary + 9; // 9bit further
+	mantissa_start_pointer = pointer_to_binary + 9; // 9byte further
 	printf("mantissa_pointer address %p\n", mantissa_start_pointer);
 	printf("mantissa_pointer value: %c\n", *mantissa_start_pointer);
 
