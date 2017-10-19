@@ -1,4 +1,4 @@
-#define BUF_LEN 1024
+#define BUF_LEN 100
 
 FILE *open_file(char *file)
 {
@@ -35,5 +35,6 @@ void reverse_dns_lookup(char *ip)
 
     int result = getnameinfo((struct sockaddr *) &socketaddress, sizeof(socketaddress), hostname, sizeof(hostname), service, sizeof(service), 0);
 
-    printf("%s\n", hostname);
+    // printf("%s\n", hostname);
 }
+
