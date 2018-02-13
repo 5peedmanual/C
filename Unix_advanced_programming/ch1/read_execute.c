@@ -15,12 +15,11 @@ int main(void)
 	{
 		if (buffer[strlen(buffer) - 1] == '\n')
 			buffer[strlen(buffer) - 1] = 0;
-		if ((pid = fork()) < 0)
-	       	{
+		if ((pid = fork()) < 0) {
 			perror("forking");
 			exit(-1);
-		} 
-		else if (pid == 0) 
-		{
+		} else if (pid == 0)
 			execlp(buffer, buffer, (char *) 0);
+	}
+}
 
