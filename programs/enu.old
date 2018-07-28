@@ -1,0 +1,140 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*
+ * THIS CODE MAY LOOK COMPLICATED
+ * BUT IT IS NOT. MY CODE IS REALLY THAT BAD.
+ */
+
+struct wlink {
+	// unsigned short w_start;
+	// unsigned short w_end;
+	// unsigned short len;
+	char start_char;
+	char word[100];
+	struct wlink *next;
+} array_list[20];
+
+
+// void fill_null_previous(struct wlink *pointer)
+// {
+// 	// pointer->previous = NULL;
+// 	printf("%p\n", pointer->previous);
+// }
+
+void fill_null(struct wlink *pointer)
+{
+	pointer->next = NULL;
+}
+
+// void fill_link(struct wlink *pointer, unsigned short st, unsigned short en,
+// 	unsigned short le, char sc, char *w_buf)
+void fill_link(struct wlink *pointer,  char sc, char *w_buf)
+{
+	// pointer->w_start = st;
+	// pointer->w_end = en;
+	// pointer->len = le;
+	pointer->start_char = sc;
+	strcpy(pointer->word, w_buf);
+	pointer->next = pointer+1;
+	// if (!st == 0)
+	// 	pointer->previous = pointer-1;
+
+}
+
+void print_link(struct wlink *pointer)
+{
+	pointer = array_list;
+	while (pointer) {
+		printf("\nfirst character: %c\n", pointer->start_char);
+		printf("word: %s\n", pointer->word);
+		pointer = pointer->next;
+
+	}
+}
+
+void organize(struct wlink *st)
+{
+	unsigned int size_arr;
+	int i,j, ret;
+	struct wlink *tmp;
+	st = array_list;
+	size_arr = sizeof(array_list) / 100; // sizeof arrar_list is 2400 bytes
+	print_link(st);
+	for (i = 0; i < 200; i++) {
+		while (st) {
+			if (st->next == NULL)
+				break;
+
+			if (ret = strcmp(st->next->word, st->word) <  0) {
+				printf("swapping %s with %s\n", st->next->word, st->word);
+					strncpy(tmp->word, st->next->word, 100);
+					tmp->start_char = st->next->start_char;
+
+					strncpy(st->next->word, st->word, 100);
+					st->next->start_char = st->start_char;
+
+					strncpy(st->word, tmp->word, 100);
+					st->start_char = tmp->start_char;
+			}
+
+			st = st->next;
+		}
+		st = array_list;
+	}
+	print_link(st);
+
+}
+
+void loop(char *buffer, unsigned int size)
+{
+	int letter_pos, w_start, len, arr_count;
+	char word[100];
+	char c;
+	struct wlink *wl;
+	arr_count = 0; // counter too loop the array_list
+	w_start = 0; // start of the word
+	// fill_null_previous(&array_list[arr_count]);
+
+	for (letter_pos = 0; letter_pos < size; letter_pos++) {
+		if (buffer[letter_pos] == '\0') {
+			fill_null(&array_list[arr_count-1]);
+			break;
+		}// if null find end of our data
+
+		if (buffer[letter_pos] == '\n') { // if \n found means end of word
+			len = letter_pos - w_start; // the Length of our word
+			// printf("\n---\ni: %d\nword_start: %d\nlen: %d\n---\n", letter_pos, w_start, len);
+			strncpy(word, buffer + w_start, len); // put the word in a tmp buffer
+			c = buffer[w_start]; // get the first character
+			// fill_link(&array_list[arr_count], w_start, letter_pos, len, c, word);
+			fill_link(&array_list[arr_count], c, word);
+
+			arr_count += 1; // inc arr_count
+			w_start = letter_pos+1; // set the start of the word and skip \n line
+		}
+		memset(word, 0, 100); // reset our word buffer because some words are bigger than
+					// others
+	}
+	organize(wl);
+}
+
+
+void main(void)
+{
+	char array[] = {
+			"LICENSE\n"
+			"compile.sh\n"
+			"pclient\n"
+			".\n"
+			"..\n"
+			"Makefile\n"
+			"err_handling\n"
+			".git\n"
+			"\0"
+		};
+	loop(array, 1024);
+
+}
+

@@ -3,14 +3,14 @@ echo "creating a tmp file with 400 MB of random data"
 head -c 400MB < /dev/urandom > tmpfile
 echo "done"
 sleep 1
-ls -l tmpfile
-dfcmd="$(df $HOME)"
-df $HOME
+ls -l tmpfile # look how big the file is
+dfcmd="$(df $HOME)" 
+df $HOME # check how much free space is available
 printf "free space:\t%s\n" "${dfcmd:119:10}"
-sleep 2
+sleep 5
 echo "Starting program"
-./a.out &
-sleep 1
+./a.out & # run the program and unlink the file
+sleep 5
 echo "checking that tmpfile is gone"
 ls -l tmpfile
 sleep 1

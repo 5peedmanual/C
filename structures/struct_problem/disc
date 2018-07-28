@@ -1,0 +1,71 @@
+
+Programa 1
+```c
+struct foo {
+	int a;
+};
+
+void change_foo(struct foo f)
+{
+	printf("[in change_foo] a = %d\n", f.a);
+	printf("[in change_foo] changing a...\n");
+	f.a = 4;
+	printf("[in change_foo] a = %d\n", f.a);
+	printf("[in change_foo] returning...\n");
+}
+
+int main(void)
+{
+	struct foo f;
+	f.a = 1;
+	printf("[in main] a = %d\n", f.a);
+	change_foo(f);
+	printf("[in main] after return a = %d\n", f.a);
+	exit(0);
+}
+```
+output 1:
+```
+[in main] a = 1
+[in change_foo] a = 1
+[in change_foo] changing a...
+[in change_foo] a = 4
+[in change_foo] returning...
+[in main] after return a = 1
+```
+
+Programa 2
+```c
+struct foo {
+	int a;
+};
+
+void change_foo(struct foo *f)
+{
+	printf("[in change_foo] a = %d\n", f->a);
+	printf("[in change_foo] changing a...\n");
+	f->a = 4;
+	printf("[in change_foo] a = %d\n", f->a);
+	printf("[in change_foo] returning...\n");
+}
+
+int main(void)
+{
+	struct foo f;
+	f.a = 1;
+	printf("[in main] a = %d\n", f.a);
+	change_foo(&f);
+	printf("[in main] after return a = %d\n", f.a);
+	exit(0);
+}
+```
+
+output 2:
+```
+[in main] a = 1
+[in change_foo] a = 1
+[in change_foo] changing a...
+[in change_foo] a = 4
+[in change_foo] returning...
+[in main] after return a = 4
+```

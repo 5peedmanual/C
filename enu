@@ -1,0 +1,105 @@
+void organize(struct wlink *st)
+{
+	unsigned int size = length();
+	int i,j, ret;
+	struct wlink tmp;
+	struct wlink first;
+	char current, next;
+	char tmpc;
+	// first = array_list;
+	st = array_list;
+	first = array_list[1];
+	current = st->start_char;
+	next = st->next->start_char;
+
+	for (i = 0; i < 6; i++) {
+		for (j = 0; j< size; j++) {
+			printf("i: %d j: %d\n", i, j);
+
+			if (st->next == NULL) {
+				puts("null");
+			}
+			
+		//	printf("%d %c %d %c\n", current, current, next, next);
+ 			printf("\ncurrent %s \n", st->word);
+			printf("array_list[j] %s \n", st->next->word);
+			 if (current > array_list[j].start_char) {
+				printf("\t[swapping] %s with %s\n", st->word, 
+						array_list[j].word);
+				 strncpy(tmp.word, array_list[j].word, 100);
+				tmp.start_char = array_list[j].start_char;
+ 
+ 			 	strncpy(array_list[j].word, st->word, 100);
+ 			 	array_list[j].start_char = st->start_char;
+ 
+ 			 	strncpy(st->word, tmp.word, 100);
+ 			 	st->start_char = tmp.start_char;			 }
+			puts("\n\n---------------------\n");
+			print_link(st);
+			puts("\n\n---------------------\n");
+			printf("firs %s \n", first.word);
+		}
+
+		
+		st = st->next;
+		first = array_list[j];
+		current = first.start_char;
+		// if (st->next != NULL)
+	//	next = first[j].start_char;
+	}
+	
+	st = array_list;
+			puts("\n\n---------------------\n");
+	puts("array_list");
+			puts("\n\n---------------------\n");
+	print_link(st);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for (i = 0; i < 5; i++) {
+			while (st) {
+ 			if (st->next == NULL) {
+ 				break;
+ 			} else if (current > next) {
+ 				printf("[>] %d %c %d %c\n", current, current, next, next);
+ 			 	printf("swapping %s with %s\n", st->word, st->next->word);
+ 			 	        strncpy(tmp.word, st->next->word, 100);
+ 			 	 	tmp.start_char = st->next->start_char;
+ 
+ 			 	 	strncpy(st->next->word, st->word, 100);
+ 			 	 	st->next->start_char = st->start_char;
+ 
+ 			 	 	strncpy(st->word, tmp.word, 100);
+ 			 	 	st->start_char = tmp.start_char;
+ 			}			
+ 			printf("%d %c %d %c\n", current, current, next, next);
+ 			printf("current %s next %s\n", st->word, st->next->word);
+ 
+ 			// if (st->next != NULL)
+ 			// 	printf("next next %s\n", st->next->next->word);
+ 			
+ 			puts("cnt");
+ 			
+ 			st = st->next;
+ 			
+ 			current = st->start_char;
+ 			if (st->next != NULL)
+ 				next = st->next->start_char;
+		}
+
+	}
+print_link(st);
